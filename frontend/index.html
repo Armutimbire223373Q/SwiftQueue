@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swift Queue</title>
+  <link rel="stylesheet" href="assets/styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>🏥 Swift Queue</h1>
+    <div class="grid">
+      <section>
+        <h2>Patient Check-in</h2>
+        <form id="checkin-form">
+          <label>Name <input type="text" id="name" required/></label>
+          <label>Phone (optional) <input type="text" id="phone"/></label>
+          <label>Symptoms <textarea id="symptoms" rows="3" placeholder="e.g., chest pain, fever..."></textarea></label>
+          <button type="submit">Get Ticket</button>
+        </form>
+        <div id="ticket"></div>
+      </section>
+
+      <section>
+        <h2>Live Queue</h2>
+        <button id="refresh-queue">Refresh</button>
+        <ul id="queue"></ul>
+      </section>
+
+      <section>
+        <h2>Staff Dashboard</h2>
+        <button id="call-next">Call Next Patient</button>
+        <button id="estimate">Estimate Wait</button>
+        <div id="staff-output"></div>
+      </section>
+    </div>
+  </div>
+  <script src="assets/app.js"></script>
+</body>
+</html>
