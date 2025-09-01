@@ -1,0 +1,303 @@
+<div class="landing-page neon-landing">
+  <!-- Navigation -->
+  <app-navbar></app-navbar>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section neon-hero">
+    <div class="hero-container">
+      <div class="hero-content animate-on-scroll">
+        <h1 class="hero-title neon-hero-title">
+          Transform Your <span class="text-gradient neon-gradient">Healthcare</span> Experience
+        </h1>
+        <p class="hero-subtitle neon-hero-subtitle">
+          SwiftQueue revolutionizes patient care with intelligent scheduling, real-time updates, and seamless communication between patients and healthcare providers.
+        </p>
+        <div class="hero-actions">
+          <a routerLink="/patient" class="btn btn-primary btn-large neon-btn-primary">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+            </svg>
+            I'm a Patient
+          </a>
+          <a routerLink="/staff" class="btn btn-outline btn-large neon-btn-outline">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.5 4.5H4a1 1 0 100 2h1.5a5 5 0 009 0H16a1 1 0 100-2h-1.5A5 5 0 0010 11z"/>
+            </svg>
+            I'm Staff
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual animate-on-scroll">
+        <div class="hero-image neon-hero-image">
+          <div class="floating-card card-1 neon-card-1">
+            <div class="card-icon neon-icon">👨‍⚕️</div>
+            <div class="card-content">
+              <h4>Dr. Smith</h4>
+              <p>Cardiology</p>
+            </div>
+          </div>
+          <div class="floating-card card-2 neon-card-2">
+            <div class="card-icon neon-icon">📱</div>
+            <div class="card-content">
+              <h4>Appointment</h4>
+              <p>Confirmed</p>
+            </div>
+          </div>
+          <div class="floating-card card-3 neon-card-3">
+            <div class="card-icon neon-icon">⏰</div>
+            <div class="card-content">
+              <h4>Next: 2:30 PM</h4>
+              <p>Room 5</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Neon Background Elements -->
+    <div class="neon-bg-elements">
+      <div class="neon-circle neon-circle-1"></div>
+      <div class="neon-circle neon-circle-2"></div>
+      <div class="neon-circle neon-circle-3"></div>
+      <div class="neon-pulse neon-pulse-1"></div>
+      <div class="neon-pulse neon-pulse-2"></div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section neon-stats">
+    <div class="stats-container">
+      <div class="stat-item animate-on-scroll neon-stat-item">
+        <div class="stat-number neon-stat-number">{{ animatedStats.patients }}+</div>
+        <div class="stat-label neon-stat-label">Patients Served</div>
+      </div>
+      <div class="stat-item animate-on-scroll neon-stat-item">
+        <div class="stat-number neon-stat-number">{{ animatedStats.doctors }}+</div>
+        <div class="stat-label neon-stat-label">Healthcare Providers</div>
+      </div>
+      <div class="stat-item animate-on-scroll neon-stat-item">
+        <div class="stat-number neon-stat-number">{{ animatedStats.appointments }}+</div>
+        <div class="stat-label neon-stat-label">Appointments Managed</div>
+      </div>
+      <div class="stat-item animate-on-scroll neon-stat-item">
+        <div class="stat-number neon-stat-number">{{ animatedStats.satisfaction }}%</div>
+        <div class="stat-label neon-stat-label">Patient Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff Benefits Section -->
+  <section id="staff-benefits" class="staff-benefits-section neon-staff-section">
+    <div class="staff-container">
+      <div class="section-header animate-on-scroll neon-section-header">
+        <h2 class="neon-section-title">Why Healthcare Staff Love SwiftQueue</h2>
+        <p class="neon-section-subtitle">Empower your team with cutting-edge tools</p>
+      </div>
+      
+      <div class="staff-benefits-grid">
+        <div class="staff-benefit-card animate-on-scroll neon-staff-card">
+          <div class="staff-benefit-icon neon-staff-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+            </svg>
+          </div>
+          <h3>Real-time Queue Management</h3>
+          <p>Monitor patient queues in real-time, manage priorities, and optimize workflow efficiency.</p>
+        </div>
+        
+        <div class="staff-benefit-card animate-on-scroll neon-staff-card">
+          <div class="staff-benefit-icon neon-staff-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/>
+            </svg>
+          </div>
+          <h3>Smart Scheduling</h3>
+          <p>AI-powered appointment scheduling that reduces wait times and improves patient satisfaction.</p>
+        </div>
+        
+        <div class="staff-benefit-card animate-on-scroll neon-staff-card">
+          <div class="staff-benefit-icon neon-staff-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+            </svg>
+          </div>
+          <h3>Patient Communication</h3>
+          <p>Seamless communication with patients through automated notifications and status updates.</p>
+        </div>
+        
+        <div class="staff-benefit-card animate-on-scroll neon-staff-card">
+          <div class="staff-benefit-icon neon-staff-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3>Secure & Compliant</h3>
+          <p>HIPAA-compliant platform with enterprise-grade security for patient data protection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section neon-features">
+    <div class="features-container">
+      <div class="section-header animate-on-scroll neon-section-header">
+        <h2 class="neon-section-title">Why Choose SwiftQueue?</h2>
+        <p class="neon-section-subtitle">Experience the future of healthcare queuing</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll neon-feature-card">
+          <div class="feature-icon neon-feature-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+            </svg>
+          </div>
+          <h3>Real-time Updates</h3>
+          <p>Get instant notifications about your queue position and estimated wait times.</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll neon-feature-card">
+          <div class="feature-icon neon-feature-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/>
+            </svg>
+          </div>
+          <h3>Smart Scheduling</h3>
+          <p>AI-powered appointment scheduling that optimizes your time and reduces wait times.</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll neon-feature-card">
+          <div class="feature-icon neon-feature-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+            </svg>
+          </div>
+          <h3>Mobile Friendly</h3>
+          <p>Access your queue status and manage appointments from any device, anywhere.</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll neon-feature-card">
+          <div class="feature-icon neon-feature-icon">
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3>Secure & Private</h3>
+          <p>Your health information is protected with enterprise-grade security and privacy measures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works-section neon-how-it-works">
+    <div class="how-it-works-container">
+      <div class="section-header animate-on-scroll neon-section-header">
+        <h2 class="neon-section-title">How It Works</h2>
+        <p class="neon-section-subtitle">Simple steps to better healthcare experience</p>
+      </div>
+      
+      <div class="steps-grid">
+        <div class="step-item animate-on-scroll neon-step-item">
+          <div class="step-number neon-step-number">1</div>
+          <h3>Book Appointment</h3>
+          <p>Choose your department, date, and time through our easy-to-use interface.</p>
+        </div>
+        
+        <div class="step-item animate-on-scroll neon-step-item">
+          <div class="step-number neon-step-number">2</div>
+          <h3>Get in Queue</h3>
+          <p>Receive your queue position and estimated wait time instantly.</p>
+        </div>
+        
+        <div class="step-item animate-on-scroll neon-step-item">
+          <div class="step-number neon-step-number">3</div>
+          <h3>Real-time Updates</h3>
+          <p>Stay informed with live updates about your queue status and any changes.</p>
+        </div>
+        
+        <div class="step-item animate-on-scroll neon-step-item">
+          <div class="step-number neon-step-number">4</div>
+          <h3>Get Served</h3>
+          <p>When it's your turn, receive a notification and proceed to your appointment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff CTA Section -->
+  <section class="staff-cta-section neon-staff-cta">
+    <div class="staff-cta-container">
+      <div class="staff-cta-content animate-on-scroll">
+        <h2 class="neon-staff-cta-title">Ready to Transform Your Healthcare Practice?</h2>
+        <p class="neon-staff-cta-subtitle">Join thousands of healthcare professionals who trust SwiftQueue to streamline their operations</p>
+        <div class="staff-cta-actions">
+          <a routerLink="/register" class="btn btn-primary btn-large neon-staff-btn">Join SwiftQueue Staff</a>
+          <a routerLink="/staff" class="btn btn-outline btn-large neon-staff-btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section neon-cta">
+    <div class="cta-container">
+      <div class="cta-content animate-on-scroll">
+        <h2>Ready to Transform Your Healthcare Experience?</h2>
+        <p>Join thousands of patients and healthcare providers who trust SwiftQueue</p>
+        <div class="cta-actions">
+          <a routerLink="/register" class="btn btn-primary btn-large neon-cta-btn">Get Started Today</a>
+          <a routerLink="/about" class="btn btn-outline btn-large neon-cta-btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer neon-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo neon-footer-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>SwiftQueue</span>
+          </div>
+          <p>Revolutionizing healthcare through intelligent scheduling and seamless patient management.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a routerLink="/register">Get Started</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Company</h4>
+          <a routerLink="/about">About</a>
+          <a routerLink="/contact">Contact</a>
+          <a routerLink="/login">Login</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Support</h4>
+          <a routerLink="/contact">Contact</a>
+          <a routerLink="/register">Sign Up</a>
+          <a routerLink="/login">Help</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 SwiftQueue. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

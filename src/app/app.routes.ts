@@ -3,8 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
+    loadComponent: () => import('./landing/landing').then(m => m.Landing)
   },
   {
     path: 'login',
@@ -13,6 +12,22 @@ export const routes: Routes = [
   {
     path: 'register',
     loadComponent: () => import('./register/register').then(m => m.Register)
+  },
+  {
+    path: 'patient',
+    loadComponent: () => import('./patient/patient').then(m => m.Patient)
+  },
+  {
+    path: 'staff',
+    loadComponent: () => import('./staff/staff').then(m => m.Staff)
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./about/about').then(m => m.About)
+  },
+  {
+    path: 'contact',
+    loadComponent: () => import('./contact/contact').then(m => m.Contact)
   },
   {
     path: 'dashboard',
@@ -34,6 +49,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/dashboard'
+    redirectTo: '/'
   }
 ];

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -8,11 +8,11 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   template: `
-    <div class="auth-container">
-      <div class="auth-card">
+    <div class="auth-container neon-bg">
+      <div class="auth-card animate-slide-in neon-card">
         <!-- Header -->
-        <div class="auth-header">
-          <div class="logo">
+        <div class="auth-header animate-fade-in">
+          <div class="logo animate-bounce-in neon-logo">
             <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
               <path d="M8 12h16M8 16h16M8 20h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -24,16 +24,16 @@ import { RouterLink } from '@angular/router';
               </defs>
             </svg>
           </div>
-          <h1>Welcome to SwiftQueue</h1>
-          <p>Sign in to your hospital staff account</p>
+          <h1 class="neon-title">Welcome to SwiftQueue</h1>
+          <p class="neon-subtitle">Sign in to your hospital staff account</p>
         </div>
 
         <!-- Login Form -->
-        <form class="auth-form" (ngSubmit)="onLogin()" #loginForm="ngForm">
-          <div class="form-group">
-            <label class="form-label" for="email">Email Address</label>
-            <div class="input-wrapper">
-              <svg class="input-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+        <form class="auth-form animate-fade-in" (ngSubmit)="onLogin()" #loginForm="ngForm">
+          <div class="form-group animate-slide-left">
+            <label class="form-label neon-label" for="email">Email Address</label>
+            <div class="input-wrapper neon-input-wrapper">
+              <svg class="input-icon neon-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
               </svg>
@@ -41,29 +41,29 @@ import { RouterLink } from '@angular/router';
                 type="email"
                 id="email"
                 name="email"
-                class="form-input"
+                class="form-input neon-input"
                 placeholder="Enter your email"
                 [(ngModel)]="loginData.email"
                 required
                 #email="ngModel"
               />
             </div>
-            <div class="form-error" *ngIf="email.invalid && email.touched">
+            <div class="form-error neon-error" *ngIf="email.invalid && email.touched">
               Please enter a valid email address
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="password">Password</label>
-            <div class="input-wrapper">
-              <svg class="input-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+          <div class="form-group animate-slide-right">
+            <label class="form-label neon-label" for="password">Password</label>
+            <div class="input-wrapper neon-input-wrapper">
+              <svg class="input-icon neon-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
               </svg>
               <input
                 [type]="showPassword ? 'text' : 'password'"
                 id="password"
                 name="password"
-                class="form-input"
+                class="form-input neon-input"
                 placeholder="Enter your password"
                 [(ngModel)]="loginData.password"
                 required
@@ -71,7 +71,7 @@ import { RouterLink } from '@angular/router';
               />
               <button
                 type="button"
-                class="password-toggle"
+                class="password-toggle neon-toggle"
                 (click)="togglePassword()"
               >
                 <svg *ngIf="!showPassword" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
@@ -84,44 +84,47 @@ import { RouterLink } from '@angular/router';
                 </svg>
               </button>
             </div>
-            <div class="form-error" *ngIf="password.invalid && password.touched">
+            <div class="form-error neon-error" *ngIf="password.invalid && password.touched">
               Password is required
             </div>
           </div>
 
-          <div class="form-options">
-            <label class="checkbox-label">
+          <div class="form-options animate-slide-up">
+            <label class="checkbox-label neon-checkbox">
               <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
-              <span class="checkmark"></span>
+              <span class="checkmark neon-checkmark"></span>
               Remember me
             </label>
-            <a href="#" class="forgot-password">Forgot password?</a>
+            <a href="#" class="forgot-password neon-link">Forgot password?</a>
           </div>
 
           <button
             type="submit"
-            class="btn btn-primary btn-lg auth-submit"
+            class="btn btn-primary btn-lg auth-submit neon-submit-btn"
             [disabled]="loginForm.invalid || isLoading"
+            [class.animate-pulse]="isLoading"
           >
             <span *ngIf="!isLoading">Sign In</span>
             <div *ngIf="isLoading" class="loading-state">
-              <div class="spinner"></div>
+              <div class="spinner neon-spinner"></div>
               <span>Signing in...</span>
             </div>
           </button>
         </form>
 
         <!-- Footer -->
-        <div class="auth-footer">
-          <p>Don't have an account? <a routerLink="/register">Create one here</a></p>
+        <div class="auth-footer animate-fade-in">
+          <p>Don't have an account? <a routerLink="/register" class="neon-link">Create one here</a></p>
         </div>
       </div>
 
       <!-- Background Elements -->
       <div class="bg-elements">
-        <div class="bg-circle bg-circle-1"></div>
-        <div class="bg-circle bg-circle-2"></div>
-        <div class="bg-circle bg-circle-3"></div>
+        <div class="bg-circle bg-circle-1 animate-float"></div>
+        <div class="bg-circle bg-circle-2 animate-float"></div>
+        <div class="bg-circle bg-circle-3 animate-float"></div>
+        <div class="bg-shape bg-shape-1 animate-rotate"></div>
+        <div class="bg-shape bg-shape-2 animate-rotate"></div>
       </div>
     </div>
   `,
@@ -131,7 +134,7 @@ import { RouterLink } from '@angular/router';
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       padding: var(--space-lg);
       position: relative;
       overflow: hidden;
@@ -150,7 +153,6 @@ import { RouterLink } from '@angular/router';
       position: absolute;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.1);
-      animation: float 6s ease-in-out infinite;
     }
 
     .bg-circle-1 {
@@ -158,7 +160,6 @@ import { RouterLink } from '@angular/router';
       height: 200px;
       top: 10%;
       left: 10%;
-      animation-delay: 0s;
     }
 
     .bg-circle-2 {
@@ -166,7 +167,6 @@ import { RouterLink } from '@angular/router';
       height: 150px;
       top: 60%;
       right: 15%;
-      animation-delay: 2s;
     }
 
     .bg-circle-3 {
@@ -174,12 +174,24 @@ import { RouterLink } from '@angular/router';
       height: 100px;
       bottom: 20%;
       left: 20%;
-      animation-delay: 4s;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(180deg); }
+    .bg-shape {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+
+    .bg-shape-1 {
+      top: 30%;
+      right: 25%;
+    }
+
+    .bg-shape-2 {
+      bottom: 30%;
+      left: 25%;
     }
 
     .auth-card {
@@ -191,7 +203,6 @@ import { RouterLink } from '@angular/router';
       max-width: 400px;
       position: relative;
       z-index: 1;
-      animation: slideIn 0.5s ease-out;
     }
 
     .auth-header {
@@ -222,6 +233,18 @@ import { RouterLink } from '@angular/router';
       gap: var(--space-lg);
     }
 
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: var(--gray-700);
+      font-size: 0.875rem;
+    }
+
     .input-wrapper {
       position: relative;
       display: flex;
@@ -236,8 +259,19 @@ import { RouterLink } from '@angular/router';
     }
 
     .form-input {
-      padding-left: 3rem;
-      padding-right: 3rem;
+      width: 100%;
+      padding: var(--space-md) var(--space-md) var(--space-md) 3rem;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      transition: all var(--transition-fast);
+      background: var(--white);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
 
     .password-toggle {
@@ -259,7 +293,6 @@ import { RouterLink } from '@angular/router';
     .form-error {
       color: var(--error);
       font-size: 0.75rem;
-      margin-top: var(--space-xs);
       display: flex;
       align-items: center;
       gap: var(--space-xs);
@@ -332,6 +365,20 @@ import { RouterLink } from '@angular/router';
       gap: var(--space-sm);
     }
 
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .auth-footer {
       text-align: center;
       margin-top: var(--space-xl);
@@ -354,6 +401,114 @@ import { RouterLink } from '@angular/router';
       text-decoration: underline;
     }
 
+    /* Animation Classes */
+    .animate-slide-in {
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .animate-bounce-in {
+      animation: bounceIn 1s ease-out;
+    }
+
+    .animate-slide-left {
+      animation: slideInLeft 0.6s ease-out 0.2s both;
+    }
+
+    .animate-slide-right {
+      animation: slideInRight 0.6s ease-out 0.4s both;
+    }
+
+    .animate-slide-up {
+      animation: slideInUp 0.6s ease-out 0.6s both;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-rotate {
+      animation: rotate 10s linear infinite;
+    }
+
+    .animate-pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
     @media (max-width: 768px) {
       .auth-container {
         padding: var(--space-md);
@@ -369,7 +524,7 @@ import { RouterLink } from '@angular/router';
     }
   `]
 })
-export class Login {
+export class Login implements OnInit {
   loginData = {
     email: '',
     password: ''
@@ -378,6 +533,10 @@ export class Login {
   showPassword = false;
   rememberMe = false;
   isLoading = false;
+
+  ngOnInit() {
+    // Initialize component
+  }
 
   togglePassword() {
     this.showPassword = !this.showPassword;

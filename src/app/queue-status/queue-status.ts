@@ -525,7 +525,7 @@ export class QueueStatus {
   patients: Patient[] = [
     {
       id: '1',
-      name: 'John Doe',
+      name: 'Mellisa Kumalo',
       ticketNumber: 'E-046',
       department: 'Emergency',
       priority: 'urgent',
@@ -535,7 +535,7 @@ export class QueueStatus {
     },
     {
       id: '2',
-      name: 'Sarah Wilson',
+      name: 'Fatso Mlambo',
       ticketNumber: 'G-024',
       department: 'General Medicine',
       priority: 'medium',
@@ -545,7 +545,7 @@ export class QueueStatus {
     },
     {
       id: '3',
-      name: 'Michael Brown',
+      name: 'Munashe Phiri',
       ticketNumber: 'P-013',
       department: 'Pediatrics',
       priority: 'high',
@@ -555,7 +555,7 @@ export class QueueStatus {
     },
     {
       id: '4',
-      name: 'Emily Davis',
+      name: 'Rita muti',
       ticketNumber: 'C-009',
       department: 'Cardiology',
       priority: 'medium',
@@ -565,7 +565,7 @@ export class QueueStatus {
     },
     {
       id: '5',
-      name: 'David Miller',
+      name: 'chikonyo  hobho',
       ticketNumber: 'O-006',
       department: 'Orthopedics',
       priority: 'low',

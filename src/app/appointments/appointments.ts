@@ -135,10 +135,10 @@ interface Appointment {
                   required
                 >
                   <option value="">Select Doctor</option>
-                  <option value="Dr. Smith">Dr. Smith</option>
-                  <option value="Dr. Johnson">Dr. Johnson</option>
-                  <option value="Dr. Williams">Dr. Williams</option>
-                  <option value="Dr. Brown">Dr. Brown</option>
+                  <option value="Dr. Smith">Dr. Mirimi</option>
+                  <option value="Dr. Johnson">Dr. Ruzende</option>
+                  <option value="Dr. Williams">Dr. Chihwai</option>
+                  <option value="Dr. Brown">Dr. Nyawai</option>
                 </select>
               </div>
             </div>
@@ -716,8 +716,8 @@ export class Appointments {
   appointments: Appointment[] = [
     {
       id: '1',
-      patientName: 'John Doe',
-      doctorName: 'Dr. Smith',
+      patientName: 'Mellisa Kumalo',
+      doctorName: 'Dr. Mirimi',
       department: 'Cardiology',
       date: new Date().toISOString().split('T')[0],
       time: '09:00',
@@ -727,8 +727,8 @@ export class Appointments {
     },
     {
       id: '2',
-      patientName: 'Sarah Wilson',
-      doctorName: 'Dr. Johnson',
+      patientName: 'Fatso Mlambo',
+      doctorName: 'Dr. Nyawai',
       department: 'General Medicine',
       date: new Date().toISOString().split('T')[0],
       time: '10:30',
@@ -737,8 +737,8 @@ export class Appointments {
     },
     {
       id: '3',
-      patientName: 'Michael Brown',
-      doctorName: 'Dr. Williams',
+      patientName: 'Munashe Phiri',
+      doctorName: 'Dr. Mirimi',
       department: 'Orthopedics',
       date: new Date().toISOString().split('T')[0],
       time: '14:00',
@@ -748,7 +748,7 @@ export class Appointments {
     {
       id: '4',
       patientName: 'Emily Davis',
-      doctorName: 'Dr. Brown',
+      doctorName: 'Dr. Chiwhai',
       department: 'Pediatrics',
       date: new Date().toISOString().split('T')[0],
       time: '16:30',
