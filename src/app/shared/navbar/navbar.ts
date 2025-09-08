@@ -19,6 +19,10 @@ import { RouterModule } from '@angular/router';
         <div class="nav-menu" [class.active]="isMenuOpen">
           <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
           <a routerLink="/patient" class="nav-link" routerLinkActive="active">Patient</a>
+          <a routerLink="/ambulance-booking" class="nav-link emergency-link" routerLinkActive="active">
+            <span class="emergency-icon">🚑</span>
+            Emergency
+          </a>
           <a routerLink="/staff" class="nav-link" routerLinkActive="active">Staff</a>
           <a routerLink="/about" class="nav-link" routerLinkActive="active">About</a>
           <a routerLink="/contact" class="nav-link" routerLinkActive="active">Contact</a>
@@ -111,6 +115,39 @@ import { RouterModule } from '@angular/router';
     .nav-link:hover::after,
     .nav-link.active::after {
       width: 100%;
+    }
+
+    .emergency-link {
+      background: linear-gradient(135deg, #ff6b6b, #e94560);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      animation: emergency-pulse 2s ease-in-out infinite;
+    }
+
+    .emergency-link:hover {
+      background: linear-gradient(135deg, #e94560, #ff6b6b);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+
+    .emergency-link::after {
+      display: none;
+    }
+
+    .emergency-icon {
+      margin-right: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    @keyframes emergency-pulse {
+      0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
+      }
+      50% { 
+        box-shadow: 0 0 0 8px rgba(255, 107, 107, 0);
+      }
     }
 
     .nav-actions {

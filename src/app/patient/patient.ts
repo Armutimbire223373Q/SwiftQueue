@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { Navbar } from '../shared/navbar/navbar';
 
 @Component({
@@ -148,6 +148,41 @@ import { Navbar } from '../shared/navbar/navbar';
             </form>
           </div>
 
+          <!-- Emergency Ambulance Booking -->
+          <div class="card emergency-card">
+            <div class="card-header emergency-header">
+              <h2>🚑 Emergency Ambulance Service</h2>
+              <p>Request immediate medical transport for emergencies</p>
+            </div>
+            
+            <div class="emergency-content">
+              <div class="emergency-alert">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-text">
+                  <strong>For life-threatening emergencies, call 999 immediately!</strong>
+                  <br>This service is for non-critical medical transport needs.
+                </div>
+              </div>
+              
+              <div class="emergency-actions">
+                <button class="btn btn-emergency" (click)="goToAmbulanceBooking()">
+                  <span class="btn-icon">🚑</span>
+                  Request Emergency Ambulance
+                </button>
+                <div class="emergency-info">
+                  <div class="info-item">
+                    <span class="info-label">Response Time:</span>
+                    <span class="info-value">10-45 minutes</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">Emergency Line:</span>
+                    <span class="info-value">999</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Current Queue Status -->
           <div class="card queue-status-card">
             <div class="card-header">
@@ -252,170 +287,440 @@ import { Navbar } from '../shared/navbar/navbar';
   styles: [`
     .patient-container {
       min-height: 100vh;
-      background: #f8fafc;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .patient-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 20, 147, 0.05) 0%, transparent 50%);
+      animation: neon-bg-pulse 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes neon-bg-pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
     }
 
     .patient-content {
       padding-top: 70px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-section {
-      background: linear-gradient(135deg, #0066cc 0%, #3385d6 100%);
-      color: white;
-      padding: 4rem 0;
       text-align: center;
-    }
-
-    .hero-content h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content p {
-      font-size: 1.125rem;
-      opacity: 0.9;
-    }
-
-    .dashboard-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-      display: grid;
-      gap: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      padding: 4rem 2rem;
+      position: relative;
       overflow: hidden;
     }
 
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(138, 43, 226, 0.1));
+      animation: hero-glow 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes hero-glow {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.6; transform: scale(1.05); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .neon-patient-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00d4ff, #8a2be2, #ff1493);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+      animation: title-glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes title-glow {
+      0% { text-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+      100% { text-shadow: 0 0 50px rgba(138, 43, 226, 0.8); }
+    }
+
+    .neon-patient-subtitle {
+      font-size: 1.25rem;
+      color: #e2e8f0;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .neon-bg-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .neon-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .neon-circle-1 {
+      width: 200px;
+      height: 200px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .neon-circle-2 {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .neon-pulse {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .neon-pulse-1 {
+      width: 100px;
+      height: 100px;
+      top: 30%;
+      right: 25%;
+      animation-delay: 1s;
+    }
+
+    .neon-pulse-2 {
+      width: 80px;
+      height: 80px;
+      bottom: 30%;
+      left: 20%;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.6; }
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(138, 43, 226, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
     .card-header {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(138, 43, 226, 0.1));
       padding: 1.5rem;
-      border-bottom: 1px solid #e5e7eb;
-      background: #f9fafb;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .card-header h2 {
+      color: #00d4ff;
+      font-size: 1.5rem;
+      font-weight: 700;
       margin: 0 0 0.5rem 0;
-      color: #111827;
-      font-size: 1.25rem;
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
     }
 
     .card-header p {
+      color: #e2e8f0;
       margin: 0;
-      color: #6b7280;
-    }
-
-    .appointment-form-card {
-      grid-column: 1 / -1;
+      opacity: 0.8;
     }
 
     .appointment-form {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      padding: 2rem;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .form-group label {
-      font-weight: 500;
-      color: #374151;
-      font-size: 0.875rem;
+      display: block;
+      color: #e2e8f0;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .form-input,
     .form-select {
-      padding: 0.75rem;
-      border: 2px solid #e5e7eb;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 0.5rem;
-      font-size: 0.875rem;
-      transition: all 0.15s ease;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
 
     .form-input:focus,
     .form-select:focus {
       outline: none;
-      border-color: #0066cc;
-      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+      border-color: #00d4ff;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
     }
 
     .form-error {
-      color: #dc2626;
-      font-size: 0.75rem;
+      color: #ff6b6b;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(255, 107, 107, 0.1);
+      border-radius: 0.25rem;
+      border-left: 3px solid #ff6b6b;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
       padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.15s ease;
-      cursor: pointer;
       border: none;
-      font-size: 0.875rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn-primary {
-      background: #0066cc;
+      background: linear-gradient(135deg, #00d4ff, #8a2be2);
       color: white;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
     }
 
-    .btn-primary:hover:not(:disabled) {
-      background: #0052a3;
-      transform: translateY(-1px);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #0066cc;
-      border: 1px solid #0066cc;
-    }
-
-    .btn-outline:hover {
-      background: #0066cc;
-      color: white;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
     }
 
     .btn-secondary {
-      background: #6b7280;
+      background: linear-gradient(135deg, #6b7280, #4b5563);
       color: white;
     }
 
     .btn-secondary:hover {
-      background: #4b5563;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(107, 114, 128, 0.4);
     }
 
     .btn-large {
       padding: 1rem 2rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .queue-status-card {
       grid-column: 1 / 2;
+    }
+
+    .emergency-card {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(233, 69, 96, 0.1));
+      border: 2px solid rgba(255, 107, 107, 0.3);
+      animation: emergency-pulse 3s ease-in-out infinite;
+    }
+
+    .emergency-header {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(233, 69, 96, 0.2));
+    }
+
+    .emergency-header h2 {
+      color: #ff6b6b;
+      text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    }
+
+    .emergency-content {
+      padding: 1.5rem;
+    }
+
+    .emergency-alert {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 107, 107, 0.1);
+      border: 2px solid rgba(255, 107, 107, 0.3);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .alert-icon {
+      font-size: 1.5rem;
+      animation: alert-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes alert-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .alert-text {
+      color: #ffffff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .emergency-actions {
+      text-align: center;
+    }
+
+    .btn-emergency {
+      background: linear-gradient(135deg, #ff6b6b, #e94560);
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    .btn-emergency:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    }
+
+    .btn-icon {
+      font-size: 1.1rem;
+      margin-right: 0.5rem;
+    }
+
+    .emergency-info {
+      display: flex;
+      justify-content: space-around;
+      gap: 1rem;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .info-label {
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    @keyframes emergency-pulse {
+      0%, 100% { 
+        border-color: rgba(255, 107, 107, 0.3);
+        box-shadow: 0 0 20px rgba(255, 107, 107, 0.1);
+      }
+      50% { 
+        border-color: rgba(255, 107, 107, 0.5);
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+      }
     }
 
     .queue-info {
@@ -430,25 +735,26 @@ import { Navbar } from '../shared/navbar/navbar';
       font-weight: 600;
       text-transform: uppercase;
       margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .status-pending {
-      background: #fef3c7;
+      background: linear-gradient(135deg, #fef3c7, #f59e0b);
       color: #92400e;
     }
 
     .status-confirmed {
-      background: #d1fae5;
+      background: linear-gradient(135deg, #d1fae5, #10b981);
       color: #065f46;
     }
 
     .status-in-queue {
-      background: #dbeafe;
+      background: linear-gradient(135deg, #dbeafe, #3b82f6);
       color: #1e40af;
     }
 
     .status-served {
-      background: #dcfce7;
+      background: linear-gradient(135deg, #dcfce7, #22c55e);
       color: #166534;
     }
 
@@ -460,8 +766,16 @@ import { Navbar } from '../shared/navbar/navbar';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #f3f4f6;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .detail-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      border-radius: 0.5rem;
     }
 
     .detail-item:last-child {
@@ -470,148 +784,87 @@ import { Navbar } from '../shared/navbar/navbar';
 
     .label {
       font-weight: 500;
-      color: #6b7280;
+      color: #cbd5e1;
     }
 
     .value {
-      color: #111827;
+      color: #ffffff;
       font-weight: 600;
     }
 
     .queue-position {
-      background: #0066cc;
+      background: linear-gradient(135deg, #0066cc, #00d4ff);
       color: white;
-      padding: 0.25rem 0.75rem;
+      padding: 0.5rem 1rem;
       border-radius: 9999px;
       font-size: 0.875rem;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
     }
 
     .queue-actions {
       display: flex;
       gap: 1rem;
+      margin-top: 1rem;
     }
 
     .no-appointment,
     .no-appointments {
       text-align: center;
       padding: 3rem 1.5rem;
-      color: #6b7280;
+      color: #cbd5e1;
+      font-style: italic;
     }
 
-    .no-appointment svg,
-    .no-appointments svg {
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-
-    .no-appointment h3,
-    .no-appointments h3 {
-      margin: 0 0 0.5rem 0;
-      color: #374151;
-    }
-
-    .no-appointment p,
-    .no-appointments p {
-      margin: 0;
-    }
-
-    .appointments-card {
-      grid-column: 2 / 3;
-    }
-
-    .appointments-list {
-      padding: 1.5rem;
-    }
-
-    .appointment-item {
-      padding: 1rem;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.75rem;
-      margin-bottom: 1rem;
-      transition: all 0.15s ease;
-    }
-
-    .appointment-item:hover {
-      border-color: #0066cc;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .appointment-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .appointment-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .appointment-date {
-      text-align: center;
-    }
-
-    .day {
-      display: block;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #0066cc;
-    }
-
-    .month {
-      display: block;
-      font-size: 0.75rem;
-      color: #6b7280;
-      text-transform: uppercase;
-    }
-
-    .appointment-status {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      text-transform: uppercase;
-    }
-
-    .appointment-details h4 {
-      margin: 0 0 0.5rem 0;
-      color: #111827;
-    }
-
-    .appointment-details p {
-      margin: 0 0 0.25rem 0;
-      color: #6b7280;
-      font-size: 0.875rem;
-    }
-
-    .appointment-name {
-      font-weight: 500;
-      color: #374151 !important;
-    }
-
-    @media (max-width: 1024px) {
+    /* Responsive Design */
+    @media (max-width: 768px) {
       .dashboard-grid {
         grid-template-columns: 1fr;
+        padding: 1rem;
       }
-      
-      .queue-status-card,
-      .appointments-card {
-        grid-column: 1 / -1;
-      }
-    }
 
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-      
       .form-row {
         grid-template-columns: 1fr;
       }
-      
-      .queue-actions {
-        flex-direction: column;
+
+      .hero-section {
+        padding: 2rem 1rem;
       }
+
+      .neon-patient-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .animate-on-scroll.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #00d4ff, #8a2be2);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #8a2be2, #00d4ff);
     }
   `]
 })
@@ -627,6 +880,8 @@ export class Patient implements OnInit {
   appointments: Appointment[] = [];
   currentAppointment: Appointment | null = null;
   isBooking = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.loadMockData();
@@ -744,6 +999,10 @@ export class Patient implements OnInit {
 
   getMonth(date: string): string {
     return new Date(date).toLocaleDateString('en-US', { month: 'short' });
+  }
+
+  goToAmbulanceBooking() {
+    this.router.navigate(['/ambulance-booking']);
   }
 }
 
